@@ -16,7 +16,7 @@
           {
             "group": "Utility Documentation",
             "pages": [
-              "cloudinary"
+              "utilities/cloudinary"
             ]
           }
         ]
