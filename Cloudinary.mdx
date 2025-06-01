@@ -1,0 +1,93 @@
+---
+title: "Cloudinary Utility"
+description: "Centralized file upload utility with validation, format types, and customizable widget."
+---
+
+## 🧾 Overview
+
+The **Cloudinary Utility** provides a centralized and reusable method for handling file uploads in your application. Instead of rewriting file validation logic every time, this utility is designed to be called wherever an upload is needed. It ensures that all uploads are validated consistently based on file size and format type using semantic constants.
+
+## 🧠 Why Use This Utility?
+
+- ✅ No need to rewrite upload logic repeatedly
+- 🔒 Built-in validation for file size and format
+- 💡 Semantic format types improve readability and maintainability
+- 🎨 Easily customizable upload widget (sources, styling, etc.)
+
+## 🗂️ Supported Format Types
+
+The utility supports the following predefined format groups:
+
+| Format Type  | Supported Formats                         |
+| ------------ | ----------------------------------------- |
+| **Image**    | jpeg, jpg, png, gif                       |
+| **Document** | pdf, doc, docx, xls, xlsx, ppt, pptx, csv |
+| **Video**    | mp4, mov                                  |
+| **Audio**    | mp3                                       |
+
+You can use them via semantic constants:
+
+```javascript
+export const FORMAT_TYPES = {
+  IMAGE: 'image',
+  DOCUMENT: 'document',
+  VIDEO: 'video',
+  AUDIO: 'audio',
+  ALL: 'all',
+}
+```
+
+<Tip>
+  You can pass either a single format type (e.g. FORMAT_TYPES.IMAGE) or an array of format types (e.g. [FORMAT_TYPES.IMAGE, FORMAT_TYPES.DOCUMENT]) when calling the utility.
+</Tip>
+
+## 📦 File Size Restrictions
+
+- Maximum file size is 5MB.
+- This limit is fixed and cannot be changed.
+
+## ⚙️ Configuration Options
+
+When calling the Cloudinary utility, you can optionally pass a custom options object to configure the upload widget.
+
+### ✅ Default Sources
+
+```javascript
+sources: ["local", "url", "dropbox", "google_drive"]
+```
+
+### 📤 Available Upload Sources
+
+| Source         | Description                                             |
+| -------------- | ------------------------------------------------------- |
+| `local`        | Upload from local device                                |
+| `url`          | Fetch a file from a given URL                           |
+| `camera`       | Take a photo using the device camera                    |
+| `image_search` | Search for images online                                |
+| `facebook`     | Import from Facebook                                    |
+| `dropbox`      | Import from Dropbox                                     |
+| `instagram`    | Import from Instagram                                   |
+| `shutterstock` | Use Shutterstock images (requires Shutterstock account) |
+| `google_drive` | Import from Google Drive                                |
+| `unsplash`     | Use images from Unsplash                                |
+
+> You can override the default sources by specifying a `sources` array in the `options`.
+
+### 🎛️ Other Customizable Options
+
+- 🔁 Allow multiple file uploads
+- #️⃣ Limit maximum number of files
+- ✂️ Enable image cropping
+- 🎨 Customize widget UI to match your app theme
+- 📎 Restrict formats per use case
+
+### ❗ Error Handling
+
+The utility provides clear error messages in case of:
+
+- ❌ Size Errors: When the uploaded file exceeds 5MB
+- ❌ Format Errors: When the file format does not match the accepted types
+
+<Note>
+  Errors are returned in a structured format for easy handling in the UI or backend.
+</Note>
